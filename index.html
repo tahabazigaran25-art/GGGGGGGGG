@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Football Card</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, sans-serif;
+            background: linear-gradient(135deg, #111827, #172554);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        .box {
+            max-width: 400px;
+            margin: auto;
+            background: rgba(255,255,255,0.08);
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 7px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        /* کارت */
+
+        .card {
+            width: 330px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 25px;
+            background: linear-gradient(145deg, #facc15, #ca8a04);
+            color: #111827;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            display: none;
+        }
+
+        .card h2 {
+            font-size: 30px;
+            margin: 10px 0;
+        }
+
+        .number {
+            font-size: 55px;
+            font-weight: bold;
+        }
+
+        .position {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.45);
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .stat span {
+            display: block;
+            font-size: 25px;
+        }
+
+        .overall {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>⚽ کارت فوتبالی من</h1>
+
+    <div class="box">
+
+        <input
+            id="name"
+            type="text"
+            placeholder="نام بازیکن">
+
+        <input
+            id="number"
+            type="number"
+            placeholder="شماره پیراهن">
+
+        <select id="position">
+
+            <option value="ST">مهاجم</option>
+
+            <option value="CAM">هافبک</option>
+
+            <option value="CB">مدافع</option>
+
+            <option value="GK">دروازه‌بان</option>
+
+        </select>
+
+        <input
+            id="speed"
+            type="number"
+            min="1"
+            max="99"
+            placeholder="سرعت ⚡">
+
+        <input
+            id="shoot"
+            type="number"
+            min="1"
+            max="99"
+            placeholder="شوت 🎯">
+
+        <input
+            id="pass"
+            type="number"
+            min="1"
+            max="99"
+            placeholder="پاس 🅰️">
+
+        <input
+            id="dribble"
+            type="number"
+            min="1"
+            max="99"
+            placeholder="دریبل 🔥">
+
+        <button onclick="createCard()">
+            ساخت کارت 🚀
+        </button>
+
+    </div>
+
+
+    <!-- کارت بازیکن -->
+
+    <div class="card" id="playerCard">
+
+        <div class="number" id="cardNumber">
+            10
+        </div>
+
+        <div class="position" id="cardPosition">
+            مهاجم
+        </div>
+
+        <h2 id="cardName">
+            بازیکن
+        </h2>
+
+        <div class="stats">
+
+            <div class="stat">
+                ⚡ سرعت
+                <span id="cardSpeed">90</span>
+            </div>
+            <div class="stat">
+                🎯 شوت
+                <span id="cardShoot">90</span>
+            </div>
+
+            <div class="stat">
+                🅰️ پاس
+                <span id="cardPass">90</span>
+            </div>
+
+            <div class="stat">
+                🔥 دریبل
+                <span id="cardDribble">90</span>
+            </div>
+
+        </div>
+
+        <div class="overall">
+
+            ⭐ امتیاز کلی:
+
+            <span id="overall">
+                90
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function createCard() {
+
+            let name =
+                document.getElementById("name").value;
+
+            let number =
+                document.getElementById("number").value;
+
+            let position =
+                document.getElementById("position").value;
+
+            let speed =
+                Number(document.getElementById("speed").value);
+
+            let shoot =
+                Number(document.getElementById("shoot").value);
+
+            let pass =
+                Number(document.getElementById("pass").value);
+
+            let dribble =
+                Number(document.getElementById("dribble").value);
+
+
+            if (name === "") {
+
+                alert("لطفاً نام بازیکن را وارد کن!");
+
+                return;
+            }
+
+
+            document.getElementById("cardName").innerText =
+                name;
+
+            document.getElementById("cardNumber").innerText =
+                number;
+
+
+            let positions = {
+
+                ST: "مهاجم",
+
+                CAM: "هافبک",
+
+                CB: "مدافع",
+
+                GK: "دروازه‌بان"
+
+            };
+
+
+            document.getElementById("cardPosition").innerText =
+                positions[position];
+
+
+            document.getElementById("cardSpeed").innerText =
+                speed;
+
+            document.getElementById("cardShoot").innerText =
+                shoot;
+
+            document.getElementById("cardPass").innerText =
+                pass;
+
+            document.getElementById("cardDribble").innerText =
+                dribble;
+
+
+            let overall =
+                Math.round(
+                    (speed + shoot + pass + dribble) / 4
+                );
+
+
+            document.getElementById("overall").innerText =
+                overall;
+
+
+            document.getElementById("playerCard").style.display =
+                "block";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
